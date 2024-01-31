@@ -7,9 +7,9 @@ on:
   pull_request:
     branches:  
       - master 
-  release:
-    types:
-      - created
+  #release:
+    #types:
+      #- created
  
 jobs:
   build:
@@ -42,7 +42,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
       with:
-        ref: main
+        ref: master
         token: ${{ secrets.NEW_SAMPLE_JAVA_TOKEN}}
  
     - name: Download Artifacts
