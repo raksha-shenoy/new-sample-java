@@ -6,7 +6,6 @@ on:
       environment:
         description: 'Select environment to deploy'
         required: true
-        default: 'DEV'
         type: choice
         options:
           - 'DEV'
