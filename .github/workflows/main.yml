@@ -16,11 +16,11 @@ on:
       environment:
         description: 'Select environment to deploy'
         required: true
-        default: 'dev'
+        default: 'DEV'
         options:
-          - 'dev'
-          - 'qa'
-          - 'prod'
+          - 'DEV'
+          - 'QA'
+          - 'PROD'
 
 jobs:
   deploy:
@@ -35,11 +35,11 @@ jobs:
 
       - name: Deploy to selected environment
         run: |
-          if [ "$DEPLOY_ENV" == "dev" ]; then
+          if [ "$DEPLOY_ENV" == "DEV" ]; then
             # Add deployment commands for dev environment
-          elif [ "$DEPLOY_ENV" == "qa" ]; then
+          elif [ "$DEPLOY_ENV" == "QA" ]; then
             # Add deployment commands for qa environment
-          elif [ "$DEPLOY_ENV" == "prod" ]; then
+          elif [ "$DEPLOY_ENV" == "PROD" ]; then
             # Add deployment commands for prod environment
           else
             echo "Invalid environment selected"
