@@ -31,9 +31,6 @@ jobs:
             # Add deployment commands for qa environment
           elif [ "$DEPLOY_ENV" == "PROD" ]; then
             # Add deployment commands for prod environment
-          else
-            echo "Invalid environment selected"
-            exit 1
           fi
   build:
     runs-on: ubuntu-latest
