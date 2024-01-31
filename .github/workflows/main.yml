@@ -10,8 +10,41 @@ on:
   #release:
     #types:
       #- created
- 
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment to deploy'
+        required: true
+        default: 'dev'
+        options:
+          - 'dev'
+          - 'qa'
+          - 'prod'
+
 jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set environment variable
+        run: echo "DEPLOY_ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
+      - name: Deploy to selected environment
+        run: |
+          if [ "$DEPLOY_ENV" == "dev" ]; then
+            # Add deployment commands for dev environment
+          elif [ "$DEPLOY_ENV" == "qa" ]; then
+            # Add deployment commands for qa environment
+          elif [ "$DEPLOY_ENV" == "prod" ]; then
+            # Add deployment commands for prod environment
+          else
+            echo "Invalid environment selected"
+            exit 1
+          fi 
   build:
     runs-on: ubuntu-latest
  
