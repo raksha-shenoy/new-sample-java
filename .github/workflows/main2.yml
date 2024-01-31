@@ -13,25 +13,6 @@ on:
           - 'PROD'
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set environment variable
-        run: echo "DEPLOY_ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
-
-      - name: Deploy to selected environment
-        run: |
-          if [ "$DEPLOY_ENV" == "DEV" ]; then
-            # Add deployment commands for dev environment
-          elif [ "$DEPLOY_ENV" == "QA" ]; then
-            # Add deployment commands for qa environment
-          elif [ "$DEPLOY_ENV" == "PROD" ]; then
-            # Add deployment commands for prod environment
-          fi
   build:
     runs-on: ubuntu-latest
  
