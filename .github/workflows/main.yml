@@ -64,6 +64,7 @@ jobs:
       run: echo "Release"
   deploy_dev:
     runs-on: ubuntu-latest
+    environment: 'DEV'
     needs: release
  
     steps:
@@ -79,7 +80,7 @@ jobs:
   deploy_qa:
     runs-on: ubuntu-latest
     needs: deploy_dev
- 
+    environment: 'QA'
     steps:
     - name: Download Artifacts
       uses: actions/download-artifact@v2
@@ -89,22 +90,11 @@ jobs:
  
     - name: Deploy to QA
       run: echo "Deploying to QA environment"
-  approval:
-    runs-on: ubuntu-latest
-    needs: deploy_dev
-   
 
-    steps:
-      - name: Request Approval
-        uses: srt32/approvals-action@v2
-        with:
-          message: 'Approve or reject this deployment'
-          reviewers: rakshitha-mayya
-          state: 'pending'
- 
   deploy_prod:
     runs-on: ubuntu-latest
-    needs: [deploy_qa, approval]
+    needs: deploy_qa
+    environment: 'PROD'
  
     steps:
     - name: Download Artifacts
