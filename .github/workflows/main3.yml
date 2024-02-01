@@ -15,17 +15,17 @@ jobs:
 
     - name: Install Vault CLI
       uses: hashicorp/setup-vault@v1
-      with:
-        vault-version: <desired version>
+     # with:
+      #  vault-version: <desired version>
 
     - name: Authenticate with Vault
       run: |
-        export VAULT_ADDR="<Your Vault Address>"
+        export VAULT_ADDR="http://127.0.0.1:8200"
         vault login -method=github token=${{ secrets.VAULT_GITHUB_TOKEN }}
 
     - name: Retrieve Secrets from Vault
       run: |
-        export VAULT_ADDR="<Your Vault Address>"
+        export VAULT_ADDR="http://127.0.0.1:8200"
         MY_SECRET=$(vault kv get -field=my_secret kv/secrets/my-app)
 
     - name: Use Secrets in Workflow
