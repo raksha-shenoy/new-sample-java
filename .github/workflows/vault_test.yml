@@ -21,8 +21,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
   
-      - name: Install Vault CLI
-        uses: hashicorp/setup-vault@v1
+      #- name: Install Vault CLI
+       # uses: hashicorp/setup-vault@v1
        # with:
         #  vault-version: <desired version>
   
