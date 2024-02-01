@@ -21,22 +21,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
   
-      #- name: Install Vault CLI
-       # uses: hashicorp/setup-vault@v1
-        #with:
-         #vault-version: latest
+      - name: Install Vault CLI
+        uses: hashicorp/setup-vault@v1
+        with:
+         vault-version: latest
       #- name: Install Vault CLI
        # run: |
         #   sudo apt-get update
          #  sudo apt-get install vault
-      - name: Install Vault CLI on Windows
-        shell: powershell
-        run: |
-           Invoke-WebRequest -Uri "https://releases.hashicorp.com/vault/1.8.0/vault_1.8.0_windows_amd64.zip" -OutFile "vault.zip"
-           Expand-Archive -Path "vault.zip" -DestinationPath "C:\vault"
-           [System.Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\vault", [System.EnvironmentVariableTarget]::Machine)
-           Remove-Item -Path "vault.zip" -Force
-       
+
          
       - name: Authenticate with Vault
         run: |
@@ -46,7 +39,7 @@ jobs:
       - name: Retrieve Secrets from Vault
         run: |
           export VAULT_ADDR="http://127.0.0.1:8200"
-          MY_SECRET=$(vault kv get -field=my_secret kv/secrets/my-app)
+          MY_SECRET=$(vault kv get -field=/v1/secret/data/mysecret)
   
       - name: Use Secrets in Workflow
         run: |
