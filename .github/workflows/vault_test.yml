@@ -21,20 +21,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
   
-      - name: Install Vault CLI
-        uses: hashicorp/setup-vault@v1
-        with:
-         vault-version: latest
+     # - name: Install Vault CLI
+      #  uses: hashicorp/setup-vault@v1
+       # with:
+        # vault-version: latest
       #- name: Install Vault CLI
        # run: |
         #   sudo apt-get update
          #  sudo apt-get install vault
 
          
-      - name: Authenticate with Vault
-        run: |
-          export VAULT_ADDR="http://127.0.0.1:8200"
-          vault login -method=github token=${{ secrets.VAULT_GITHUB_TOKEN }}
+      #- name: Authenticate with Vault
+       # run: |
+        #  export VAULT_ADDR="http://127.0.0.1:8200"
+         # vault login -method=github token=${{ secrets.VAULT_GITHUB_TOKEN }}
   
       - name: Retrieve Secrets from Vault
         run: |
