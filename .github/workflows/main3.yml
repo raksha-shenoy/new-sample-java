@@ -1,0 +1,34 @@
+name: Vault Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Vault CLI
+      uses: hashicorp/setup-vault@v1
+     # with:
+      #  vault-version: <desired version>
+
+    - name: Authenticate with Vault
+      run: |
+        export VAULT_ADDR="http://127.0.0.1:8200"
+        vault login -method=github token=${{ secrets.VAULT_GITHUB_TOKEN }}
+
+    - name: Retrieve Secrets from Vault
+      run: |
+        export VAULT_ADDR="http://127.0.0.1:8200"
+        MY_SECRET=$(vault kv get -field=my_secret kv/secrets/my-app)
+
+    - name: Use Secrets in Workflow
+      run: |
+        echo "MY_SECRET=${MY_SECRET}" >> $GITHUB_ENV
+        # Use MY_SECRET in subsequent steps or jobs
