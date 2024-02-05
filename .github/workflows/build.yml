@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: List repository contents
+        run: ls -R
+
+
       - name: Build Docker image
         run: docker build --output type=image,dest=rakshashenoy/new-sample-java:latest .
 
