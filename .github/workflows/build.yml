@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,10 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build --output type=image,dest=rakshashenoy/new-sample-java:latest .
+        run: docker build -t rakshashenoy/new-sample-java:latest .
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
         run: docker push rakshashenoy/new-sample-java:latest
+
