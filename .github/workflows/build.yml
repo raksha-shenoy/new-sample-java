@@ -21,4 +21,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-         docker build -t rakshashenoy/new-sample-java:latest .
+         docker buildx create --use
+         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+         docker buildx build --platform linux/amd64,linux/arm64 -t rakshashenoy/new-sample-java:latest .
+         docker push rakshashenoy/new-sample-java:latest
