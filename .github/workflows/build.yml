@@ -6,22 +6,18 @@ on:
       - master
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: List repository contents
-        run: ls -R
-
       - name: Build Docker image
-        run: docker build -t rakshashenoy/new-sample-java:latest .
+        run: docker build --output type=image,dest=rakshashenoy/new-sample-java:latest .
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push rakshashenoy/new-sample-java:latest
-
+        run: docker push yrakshashenoy/new-sample-java:latest
