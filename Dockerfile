@@ -3,11 +3,11 @@
 FROM openjdk:11-jre-slim
 
 # Set the working directory inside the container
-WORKDIR /apps
+WORKDIR /app
 
 # Copy the JAR file into the container at /app
-COPY target/java.jar /apps/java.jar
+COPY target/App.jar /app/App.jar
 
 # Specify the command to run on container startup
-CMD ["java", "-jar", "java.jar"]
+CMD ["java", "-jar", "App.jar"]
 
