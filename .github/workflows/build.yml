@@ -22,4 +22,3 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
          docker build -t rakshashenoy/new-sample-java:latest .
-
