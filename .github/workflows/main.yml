@@ -47,11 +47,11 @@ jobs:
         # ref: master
         # token: ${{ secrets.NEW_SAMPLE_JAVA_TOKEN}}
  
-    - name: Download Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: java
-        path: target/
+   # - name: Download Artifacts
+      # uses: actions/download-artifact@v2
+      # with:
+      #   name: java
+      #   path: target/
  
     - name: Set Release Version
       run: echo "RELEASE_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
@@ -88,7 +88,7 @@ jobs:
   deploy_dev:
     runs-on: ubuntu-latest
     environment: 'DEV'
-    needs: release
+    needs: build
  
     steps:
     - name: Download Artifacts
