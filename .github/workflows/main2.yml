@@ -198,8 +198,8 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.NEW_SAMPLE_JAVA_TOKEN }}
           with:
-            tag_name: ${{ steps.nexts.outputs.version }}
-            release_name: Release ${{ steps.nexts.outputs.version }}
+            tag_name: ${{ steps.nexts.outputs.patch }}
+            release_name: Release ${{ steps.nexts.outputs.patch }}
      
   
         
