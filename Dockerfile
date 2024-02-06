@@ -28,6 +28,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the application
+RUN mvn clean install
 RUN mvn clean package
 
 # Create a final image for running the application
