@@ -38,7 +38,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the JAR file from the build environment to the final image
-COPY --from=build /app/target/java.jar ./app.jar
+COPY --from=build /App/target/java.jar ./app.jar
 
 # Specify the command to run on container startup
 CMD ["java", "-jar", "app.jar"]
